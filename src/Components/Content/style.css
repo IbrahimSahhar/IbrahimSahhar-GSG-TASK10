@@ -1,0 +1,34 @@
+.content {
+    position: relative;
+    color: white;
+}
+
+.text,
+span {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Inter';
+    font-style: normal;
+}
+
+.text {
+    margin-top: 215px;
+
+}
+
+.text img {
+    display: block;
+    margin-bottom: 10px;
+
+}
+
+.left .anchor {
+    display: block;
+    margin-top: 90px;
+}
+
+.left .vector {
+    float: right;
+    margin-top: 40px;
+    margin-right: -10px;
+}

@@ -1,0 +1,58 @@
+.login {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.login .left {
+    width: 45%;
+    min-height: 1024px;
+    padding: 50px 90px;
+}
+
+.login .left .vector {
+    float: right;
+    margin-right: -10px;
+    margin-top: -90px;
+}
+
+.login .right {
+    flex: 1;
+}
+
+.login .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.login .or {
+    display: block;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #BABABA;
+}
+
+.login .registerAccount {
+    display: block;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #696F79;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.login .registerAccount a {
+    color: #1565D8;
+}

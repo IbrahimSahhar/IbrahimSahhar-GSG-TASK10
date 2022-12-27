@@ -1,0 +1,40 @@
+.input {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+}
+
+.login .input {
+    margin-bottom: 50px;
+}
+
+.input label {
+    color: #696F79;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.input input {
+    border: 1px solid #8692A6;
+    border-radius: 6px;
+    padding: 20px;
+
+}
+
+.input input::placeholder {
+    color: #8692A6;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    align-items: center;
+}
