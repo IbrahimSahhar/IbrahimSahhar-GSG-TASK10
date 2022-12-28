@@ -10,7 +10,6 @@ export default class Input extends Component {
           type={type}
           name={Name}
           placeholder={placeholder}
-          required
           onChange={Method}
           value={value}
         />

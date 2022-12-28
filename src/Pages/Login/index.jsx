@@ -13,8 +13,19 @@ import Icon4 from "../../Assets/images/Vector (2).png";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import Card from "../../Components/Card";
-
 import "./style.css";
+
+import * as yup from "yup";
+
+let schema = yup.object().shape({
+  email: yup.string().email().required("email input is required"),
+  password: yup
+    .string()
+    .required("password input is required")
+    .min(8, "your password should be at least 8 characters")
+    .max(30)
+    .matches('^[a-zA-Z0-9!@#$&()-`.+,/"]*$'),
+});
 
 export default class Login extends Component {
   state = {
@@ -31,41 +42,68 @@ export default class Login extends Component {
     this.setState({ [name]: value });
   };
 
+  //  validation with Yup library
   handleSubmit = (e) => {
-    this.setState({
-      styleOfCard: {
-        top: "30%",
-      },
-    });
     e.preventDefault();
-    if (this.state.email.length === 0 || this.state.password.length === 0) {
-      this.setState({
-        error: true,
-        messageOfError: "one of input fields is required",
-      });
-    } else if (this.state.password.length < 8) {
-      this.setState({
-        error: true,
-        messageOfError: "your password should be at least 8 characters.",
-      });
-    } else {
-      this.setState({
-        error: false,
-        messageOfError: "successfully!",
-        styleOfCard: {
-          boxShadow: "inset 8px 0 green",
-          top: "30%",
+    schema
+      .validate(
+        {
+          email: this.state.email,
+          password: this.state.password,
         },
+        { abortEarly: false }
+      )
+      .then((valid) => {
+        if (valid) {
+          this.setState({
+            email: "",
+            password: "",
+          });
+          console.log("successfully!");
+        }
+      })
+      .catch((err) => {
+        console.log(err); // => false
       });
-      this.setState({
-        email: "",
-        password: "",
-        password2: "",
-        trems: false,
-        passwordStrength: 0,
-      });
-    }
   };
+
+  // normal validation
+
+  // handleSubmit = (e) => {
+  //   this.setState({
+  //     styleOfCard: {
+  //       top: "30%",
+  //     },
+  //   });
+  //   e.preventDefault();
+  //   if (this.state.email.length === 0 || this.state.password.length === 0) {
+  //     this.setState({
+  //       error: true,
+  //       messageOfError: "one of input fields is required",
+  //     });
+  //   } else if (this.state.password.length < 8) {
+  //     this.setState({
+  //       error: true,
+  //       messageOfError: "your password should be at least 8 characters.",
+  //     });
+  //   } else {
+  //     this.setState({
+  //       error: false,
+  //       messageOfError: "successfully!",
+  //       styleOfCard: {
+  //         boxShadow: "inset 8px 0 green",
+  //         top: "30%",
+  //       },
+  //     });
+  //     this.setState({
+  //       email: "",
+  //       password: "",
+  //       password2: "",
+  //       trems: false,
+  //       passwordStrength: 0,
+  //     });
+  //   }
+  // };
   render() {
     return (
       <div className="login">

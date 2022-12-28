@@ -12,8 +12,30 @@ import Button from "../..//Components/Button";
 import Icon from "../../Assets/images/flat-color-icons_google.png";
 import PasswordStrength from "../../Components/PasswordStrength";
 import Card from "../../Components/Card";
-
 import "./style.css";
+
+import * as yup from "yup";
+
+let schema = yup.object().shape({
+  email: yup.string().email().required("email input is required"),
+  password: yup
+    .string()
+    .required("password input is required")
+    .min(8, "your password should be at least 8 characters")
+    .max(30)
+    .matches('^[a-zA-Z0-9!@#$&()-`.+,/"]*$'),
+  password2: yup
+    .string()
+    .required("repeat password input is required")
+    .min(8, "your password should be at least 8 characters")
+    .max(30)
+    .matches('^[a-zA-Z0-9!@#$&()-`.+,/"]*$')
+    .oneOf([yup.ref("password")], "please make sure that passwords matches!"),
+  check: yup
+    .boolean()
+    .required("check input is required")
+    .isTrue("Must Agree From Conditions"),
+});
 
 export default class Register extends Component {
   state = {
@@ -63,61 +85,94 @@ export default class Register extends Component {
     this.setState({ check: !this.state.check });
   };
 
+  //  validation with Yup library
+
   handleSubmit = (e) => {
-    this.setState({
-      styleOfCard: {
-        top: "30%",
-      },
-    });
     e.preventDefault();
-    if (
-      this.state.email.length === 0 ||
-      this.state.password.length === 0 ||
-      this.state.password2 === 0
-    ) {
-      this.setState({
-        error: true,
-        messageOfError: "one of input fields is required",
-      });
-    } else if (this.state.password.length < 8) {
-      this.setState({
-        error: true,
-        messageOfError: "your password should be at least 8 characters.",
-      });
-    } else if (this.state.password !== this.state.password2) {
-      this.setState({
-        error: true,
-        messageOfError: "please make sure that passwords matches!",
-      });
-    } else if (this.state.passwordStrength < 60) {
-      this.setState({
-        error: true,
-        messageOfError:
-          "your password strength should be at lease Medium strength.",
-      });
-    } else if (!this.state.check) {
-      this.setState({
-        error: true,
-        messageOfError: "Must Agree From Conditions ",
-      });
-    } else {
-      this.setState({
-        error: false,
-        messageOfError: "successfully!",
-        styleOfCard: {
-          boxShadow: "inset 8px 0 green",
-          top: "30%",
+    schema
+      .validate(
+        {
+          email: this.state.email,
+          password: this.state.password,
+          password2: this.state.password2,
+          check: this.state.check,
         },
+        { abortEarly: false }
+      )
+      .then((valid) => {
+        if (valid) {
+          this.setState({
+            email: "",
+            password: "",
+            password2: "",
+            check: false,
+            passwordStrength: 0,
+          });
+          console.log("successfully!");
+        }
+      })
+      .catch((err) => {
+        console.log(err); // => false
       });
-      this.setState({
-        email: "",
-        password: "",
-        password2: "",
-        trems: false,
-        passwordStrength: 0,
-      });
-    }
   };
+
+  // normal validation
+
+  // handleSubmit = (e) => {
+  //   this.setState({
+  //     styleOfCard: {
+  //       top: "30%",
+  //     },
+  //   });
+
+  //   if (
+  //     this.state.email.length === 0 ||
+  //     this.state.password.length === 0 ||
+  //     this.state.password2 === 0
+  //   ) {
+  //     this.setState({
+  //       error: true,
+  //       messageOfError: "one of input fields is required",
+  //     });
+  //   } else if (this.state.password.length < 8) {
+  //     this.setState({
+  //       error: true,
+  //       messageOfError: "your password should be at least 8 characters.",
+  //     });
+  //   } else if (this.state.password !== this.state.password2) {
+  //     this.setState({
+  //       error: true,
+  //       messageOfError: "please make sure that passwords matches!",
+  //     });
+  //   } else if (this.state.passwordStrength < 60) {
+  //     this.setState({
+  //       error: true,
+  //       messageOfError:
+  //         "your password strength should be at lease Medium strength.",
+  //     });
+  //   } else if (!this.state.check) {
+  //     this.setState({
+  //       error: true,
+  //       messageOfError: "Must Agree From Conditions ",
+  //     });
+  //   } else {
+  //     this.setState({
+  //       error: false,
+  //       messageOfError: "successfully!",
+  //       styleOfCard: {
+  //         boxShadow: "inset 8px 0 green",
+  //         top: "30%",
+  //       },
+  //     });
+  //     this.setState({
+  //       email: "",
+  //       password: "",
+  //       password2: "",
+  //       trems: false,
+  //       passwordStrength: 0,
+  //     });
+  //   }
+  // };
   render() {
     return (
       <div className="register">
