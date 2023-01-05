@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/IbrahimSahhar-GSG-TASK10/static/css/main.d91c6b62.css",
+    "main.js": "/IbrahimSahhar-GSG-TASK10/static/js/main.cc351b21.js",
+    "static/media/Rectangle1.png": "/IbrahimSahhar-GSG-TASK10/static/media/Rectangle1.b3e3487324282af3a67c.png",
+    "static/media/GODOFWAR.png": "/IbrahimSahhar-GSG-TASK10/static/media/GODOFWAR.3cc397b6ae5caff9855a.png",
+    "static/media/SPIDERMAN.png": "/IbrahimSahhar-GSG-TASK10/static/media/SPIDERMAN.482c7273280473214740.png",
+    "static/media/SUPERMAN-2.png": "/IbrahimSahhar-GSG-TASK10/static/media/SUPERMAN-2.eaa82ccaab8f8c1bb645.png",
+    "static/media/supersede.png": "/IbrahimSahhar-GSG-TASK10/static/media/supersede.899607da9aff55bcffb2.png",
+    "static/media/FRIENDS.png": "/IbrahimSahhar-GSG-TASK10/static/media/FRIENDS.c427d8d992f145b1768c.png",
+    "static/media/palyGames.jpg": "/IbrahimSahhar-GSG-TASK10/static/media/palyGames.73b9c9affc00dcbcb2de.jpg",
+    "static/media/personalImage.png": "/IbrahimSahhar-GSG-TASK10/static/media/personalImage.25b355893ba8e77578ca.png",
+    "static/media/kass.png": "/IbrahimSahhar-GSG-TASK10/static/media/kass.650e46225bc98646ae62.png",
+    "static/media/Ellipse1.png": "/IbrahimSahhar-GSG-TASK10/static/media/Ellipse1.e0083e4b32ef0075bcd8.png",
+    "static/media/Ellipse3.png": "/IbrahimSahhar-GSG-TASK10/static/media/Ellipse3.34508981c9aacfc400ff.png",
+    "static/media/Ellipse2.png": "/IbrahimSahhar-GSG-TASK10/static/media/Ellipse2.e7c7eb208d749d056bcb.png",
+    "static/media/Ellipse4.png": "/IbrahimSahhar-GSG-TASK10/static/media/Ellipse4.3181d4a9a1470cd3d1b7.png",
+    "static/media/Settings.svg": "/IbrahimSahhar-GSG-TASK10/static/media/Settings.ae2eff8ac845bfb4f79dc5364d149aed.svg",
+    "static/media/logo.svg": "/IbrahimSahhar-GSG-TASK10/static/media/logo.7dbe4f57776c586f9e4a28ef964cb6e0.svg",
+    "static/media/Sun-one.svg": "/IbrahimSahhar-GSG-TASK10/static/media/Sun-one.bfe2dfddae362831475bd806997f3b6f.svg",
+    "static/media/Puzzle.svg": "/IbrahimSahhar-GSG-TASK10/static/media/Puzzle.367d19e9a7f3167411ee117a6debb046.svg",
+    "static/media/like.svg": "/IbrahimSahhar-GSG-TASK10/static/media/like.ae41b02e098858fae2ed05e87eb983f2.svg",
+    "static/media/Moon.svg": "/IbrahimSahhar-GSG-TASK10/static/media/Moon.bf40a473db5a3d5d0e7f01f5d21d104e.svg",
+    "index.html": "/IbrahimSahhar-GSG-TASK10/index.html",
+    "main.d91c6b62.css.map": "/IbrahimSahhar-GSG-TASK10/static/css/main.d91c6b62.css.map",
+    "main.cc351b21.js.map": "/IbrahimSahhar-GSG-TASK10/static/js/main.cc351b21.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d91c6b62.css",
+    "static/js/main.cc351b21.js"
+  ]
+}
