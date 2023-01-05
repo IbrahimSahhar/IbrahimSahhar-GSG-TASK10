@@ -1,24 +1,37 @@
+/* Start Login */
+
 .login {
     display: flex;
     justify-content: space-between;
 
 }
 
+@media only screen and (max-width: 992px) {
+
+    .login {
+        display: block;
+    }
+}
+
+/* Start left section in login */
+
 .login .left {
     width: 45%;
     min-height: 1024px;
     padding: 50px 90px;
+
 }
 
-.login .left .vector {
-    float: right;
-    margin-right: -10px;
-    margin-top: -90px;
-}
+/* End left section in login */
+
+
+/* Start right section in login */
 
 .login .right {
     flex: 1;
+    margin-right: 150px;
 }
+
 
 .login .icons {
     display: flex;
@@ -41,7 +54,41 @@
     color: #BABABA;
 }
 
-.login .registerAccount {
+
+
+
+.login .right .text {
+    margin-top: 130px;
+}
+
+.login .right .text H1 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login .right .text p {
+    color: #8692A6;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.login .right .input {
+    margin-bottom: 50px;
+}
+
+.login .right .registerAccount {
     display: block;
     font-family: 'Inter';
     font-style: normal;
@@ -53,6 +100,52 @@
     text-align: center;
 }
 
-.login .registerAccount a {
+.login .right .registerAccount a {
     color: #1565D8;
 }
+
+.login .right .button {
+    margin-top: 40px;
+}
+
+/* End right section in login */
+
+
+/* Start Media Query*/
+
+@media only screen and (max-width: 992px) {
+
+    .login .left {
+        display: none;
+    }
+
+    .login .right {
+        margin-bottom: 50px;
+        margin-top: -50px;
+    }
+
+
+}
+
+@media only screen and (max-width: 767px) {
+    .login .left {
+        display: none;
+    }
+
+    .login .right {
+        width: 100%;
+        margin-top: -50px;
+        margin-bottom: 50px;
+    }
+
+    .container {
+        width: 80% !important;
+        margin: auto !important;
+    }
+
+
+}
+
+/* End Media Query*/
+
+/* End Login */

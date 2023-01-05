@@ -22,7 +22,7 @@
 /* strong */
 
 .password-strength-meter-strong {
-    width: 70% !important;
+    width: 100% !important;
     height: 5px;
     background-color: rgb(14, 97, 14);
     border-radius: 2rem;

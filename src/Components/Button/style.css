@@ -2,9 +2,7 @@
     position: relative;
 }
 
-.login .button {
-    margin-top: 40px;
-}
+
 
 .button button {
     background: #1565D8;
@@ -19,12 +17,15 @@
     font-size: 16px;
     line-height: 19px;
     text-align: center;
-    color: #FFFFFF;
     cursor: pointer;
 }
 
+.button button a {
+    text-decoration: none;
+}
+
 .button button:hover {
-    background: #1565D8;
+    outline: 3px solid #1565D8;
 }
 
 .button img {

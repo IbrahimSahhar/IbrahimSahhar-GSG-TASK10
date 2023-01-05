@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./iconButton.css";
+import "./style.css";
 
 export default class IconButton extends Component {
   render() {

@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import * as yup from "yup";
+import { NavLink } from "react-router-dom";
+import "./style.css";
+
 import Container from "../../Components/Container";
 import Arrow from "../../Assets/images/arrow_back_ios_24px.png";
-import * as Typography from "../../Components/Typography";
 import Input from "../../Components/Input";
 import Content from "../../Components/Content";
 import Quotation from "../../Assets/images/“.png";
@@ -12,9 +15,11 @@ import Button from "../..//Components/Button";
 import Icon from "../../Assets/images/flat-color-icons_google.png";
 import PasswordStrength from "../../Components/PasswordStrength";
 import Card from "../../Components/Card";
-import "./style.css";
+import Or from "../../Components/Or";
+import ScrollToTop from "../../Components/ScrollToTop";
+import * as Typography from "../../Components/Typography";
 
-import * as yup from "yup";
+// Build a Yup schema from a JSON Schema
 
 let schema = yup.object().shape({
   email: yup.string().email().required("email input is required"),
@@ -22,13 +27,13 @@ let schema = yup.object().shape({
     .string()
     .required("password input is required")
     .min(8, "your password should be at least 8 characters")
-    .max(30)
+    .max(30, "your password should be at most 30 characters")
     .matches('^[a-zA-Z0-9!@#$&()-`.+,/"]*$'),
   password2: yup
     .string()
     .required("repeat password input is required")
     .min(8, "your password should be at least 8 characters")
-    .max(30)
+    .max(30, "your password should be at most 30 characters")
     .matches('^[a-zA-Z0-9!@#$&()-`.+,/"]*$')
     .oneOf([yup.ref("password")], "please make sure that passwords matches!"),
   check: yup
@@ -45,6 +50,7 @@ export default class Register extends Component {
     passwordStrength: 0,
     check: false,
     error: false,
+    classnames: "",
     messageOfError: "",
     styleOfCard: {
       top: "-100%",
@@ -88,7 +94,19 @@ export default class Register extends Component {
   //  validation with Yup library
 
   handleSubmit = (e) => {
+    window.scrollTo({
+      top: 200,
+      left: 0,
+      behavior: "smooth",
+    });
     e.preventDefault();
+    this.setState({
+      styleOfCard: {
+        top: "700px",
+      },
+      classnames: "",
+    });
+
     schema
       .validate(
         {
@@ -109,72 +127,43 @@ export default class Register extends Component {
             passwordStrength: 0,
           });
           console.log("successfully!");
+          this.setState({
+            error: false,
+            messageOfError: "successfully!",
+          });
         }
       })
       .catch((err) => {
-        console.log(err); // => false
+        console.log(err.errors); // => false
+        this.setState({
+          error: true,
+          messageOfError: `You have ${err.errors.length} errors 
+              ${err.errors[0]}`,
+        });
       });
   };
 
-  // normal validation
-
-  // handleSubmit = (e) => {
-  //   this.setState({
-  //     styleOfCard: {
-  //       top: "30%",
-  //     },
-  //   });
-
-  //   if (
-  //     this.state.email.length === 0 ||
-  //     this.state.password.length === 0 ||
-  //     this.state.password2 === 0
-  //   ) {
-  //     this.setState({
-  //       error: true,
-  //       messageOfError: "one of input fields is required",
-  //     });
-  //   } else if (this.state.password.length < 8) {
-  //     this.setState({
-  //       error: true,
-  //       messageOfError: "your password should be at least 8 characters.",
-  //     });
-  //   } else if (this.state.password !== this.state.password2) {
-  //     this.setState({
-  //       error: true,
-  //       messageOfError: "please make sure that passwords matches!",
-  //     });
-  //   } else if (this.state.passwordStrength < 60) {
-  //     this.setState({
-  //       error: true,
-  //       messageOfError:
-  //         "your password strength should be at lease Medium strength.",
-  //     });
-  //   } else if (!this.state.check) {
-  //     this.setState({
-  //       error: true,
-  //       messageOfError: "Must Agree From Conditions ",
-  //     });
-  //   } else {
-  //     this.setState({
-  //       error: false,
-  //       messageOfError: "successfully!",
-  //       styleOfCard: {
-  //         boxShadow: "inset 8px 0 green",
-  //         top: "30%",
-  //       },
-  //     });
-  //     this.setState({
-  //       email: "",
-  //       password: "",
-  //       password2: "",
-  //       trems: false,
-  //       passwordStrength: 0,
-  //     });
-  //   }
-  // };
+  // function to scale the card from the page
+  scale = () => {
+    this.setState({
+      classnames: "scale-out",
+    });
+    window.setTimeout(() => {
+      window.scrollTo({
+        top: 200,
+        left: 0,
+        behavior: "smooth",
+      });
+      this.setState({
+        styleOfCard: {
+          top: "-100%",
+        },
+      });
+    }, 200);
+  };
   render() {
     return (
+      // Start Register
       <div className="register">
         <div className="left">
           <div className="head">
@@ -194,7 +183,9 @@ export default class Register extends Component {
         <div className="right">
           <div className="back">
             <img src={Arrow} alt="Arrow" />
-            <span>Back</span>
+            <ScrollToTop>
+              <NavLink to={"/Login"}>Back</NavLink>
+            </ScrollToTop>
           </div>
           <Container>
             <div className="text">
@@ -246,26 +237,28 @@ export default class Register extends Component {
               textButton="Register Account"
               Method={this.handleSubmit}
             />
-            <span className="or">Or</span>
+            <Or />
             <Button
+              Href="Login"
               textButton="login"
               Icon={Icon}
               Style={{
-                color: "#000000",
                 background: "#FFFFFF",
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.08)",
-                borderRadius: "6px",
               }}
             />
           </Container>
           <Card
+            Clasess={this.state.classnames}
+            Method={this.scale}
             ErrorMassage={this.state.messageOfError}
             Type={this.state.error}
             Style={this.state.styleOfCard}
+            Href="/Login"
           />
-          ;
         </div>
       </div>
+      // End Register
     );
   }
 }
